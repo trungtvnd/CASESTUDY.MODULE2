@@ -4,17 +4,16 @@ import java.io.Serializable;
 
 public class Off implements Serializable {
     private int id;
-    private Human human;
+    private final Human human;
     private Employee employee;
-    private int dayOff;
+    private final int dayOff;
     private boolean status = false;
 
-    public Off(int id,Human human, Employee employee, int dayOff, boolean status) {
+    public Off(int id,Human human, Employee employee, int dayOff) {
         this.id = id;
         this.human = human;
         this.employee = employee;
         this.dayOff = dayOff;
-        this.status = status;
     }
 
     public int getId() {
@@ -44,18 +43,10 @@ public class Off implements Serializable {
     public Human getHuman() {
         return human;
     }
-
-    public void setHuman(Human human) {
-        this.human = human;
-    }
-
     public int getDayOff() {
         return dayOff;
     }
 
-    public void setDayOff(int dayOff) {
-        this.dayOff = dayOff;
-    }
     public String checkStatus(){
         if(isStatus()){
             return "Approve";

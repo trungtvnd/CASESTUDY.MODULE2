@@ -42,8 +42,7 @@ public class OffManagement implements Crud, Serializable {
         }
         Employee employee = new Employee(human);
         System.out.println("Input number of Days you want to off"); int dayOff = sc.nextInt();
-        boolean status = false;
-        Off off1 = new Off(id,human, employee, dayOff, status);
+        Off off1 = new Off(id,human, employee, dayOff);
         offs.add(off1);
         writeOffToFile(OFF_PATH);
     }
@@ -84,8 +83,11 @@ public class OffManagement implements Crud, Serializable {
             if(id == off.getEmployee().getId()){
                 flag = true;
                 offApprove = off;
-                offApprove.setStatus(false);
+                offApprove.setStatus(true);
                 writeOffToFile(OFF_PATH);
+            }
+            else {
+                flag = false;
             }
         }if(flag){
             System.out.println("Approve Success");
