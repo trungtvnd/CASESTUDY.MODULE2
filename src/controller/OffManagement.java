@@ -72,43 +72,25 @@ public class OffManagement implements Crud, Serializable {
     @Override
     public void display() {
         for (Off off:offs) {
-            System.out.println(off.display());
+            System.out.println(off);
         }
     }
 
-    public boolean checkOff() {
-        sc.nextLine();
-        System.out.println("Would you like to Approve ");
-        System.out.println("1. Yes\n" +
-                "0. No/Quit\n" +
-                "");
-        System.out.println("Input your choice");
-        int choice;
-        try {
-            choice = Integer.parseInt(sc.nextLine());
-            while (choice < 0 || choice > 1) {
-                System.out.println("you can choose from 0 to 1, please choose again");
-                choice = sc.nextInt();
-                if (choice == 1) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("please input number");
-            checkOff();
-        }
-        return false;
-    }
     public void approveOff(){
         Off offApprove;
+        boolean flag = false;
         System.out.println("Input id you want to approve: "); int id = sc.nextInt();
         for (Off off:offs) {
             if(id == off.getEmployee().getId()){
+                flag = true;
                 offApprove = off;
                 offApprove.setStatus(false);
                 writeOffToFile(OFF_PATH);
-                display();
             }
+        }if(flag){
+            System.out.println("Approve Success");
+        }else {
+            System.out.println("Do not allowed");
         }
     }
 

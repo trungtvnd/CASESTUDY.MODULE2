@@ -7,7 +7,7 @@ public class Off implements Serializable {
     private Human human;
     private Employee employee;
     private int dayOff;
-    private boolean status;
+    private boolean status = false;
 
     public Off(int id,Human human, Employee employee, int dayOff, boolean status) {
         this.id = id;
@@ -66,12 +66,8 @@ public class Off implements Serializable {
 
     @Override
     public String toString() {
-        return (String.format("%-5d%-20S%-10s%-20b\n", getId(), getHuman().getName(), getDayOff(), !isStatus()));
+        return (String.format("%-5d%-20Sd%-10s%-20s\n", getId(), getHuman().getName(), getDayOff(), isStatus()));
     }
 
-    public String display(){
-        return (String.format("%-5d%-20Sd%-10s%-20s\n", getId(), getHuman().getName(), getDayOff(), checkStatus()));
-
-    }
 
 }

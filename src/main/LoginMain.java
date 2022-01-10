@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class LoginMain {
 
     private static final Scanner sc = new Scanner(System.in);
-    private static final OffManagement offManagement = new OffManagement();
+    private static OffManagement offManagement = new OffManagement();
 
     public void loginMain() {
 
@@ -41,12 +41,14 @@ public class LoginMain {
             System.out.println("1. Management User");
             System.out.println("2. Management information");
             System.out.println("3. Display information");
+            System.out.println("4. Ask for off");
+            System.out.println("5. Check off");
             System.out.println("0. Exit");
             System.out.println("Input your choice");
             try {
                 choice = Integer.parseInt(sc.nextLine());
-                while (choice < 0 || choice > 3 ){
-                    System.out.println("you can choose from 0 to 3, please choose again");
+                while (choice < 0 || choice > 5 ){
+                    System.out.println("you can choose from 0 to 5, please choose again");
                     choice = sc.nextInt();
                 }
             } catch (Exception e) {
@@ -70,6 +72,13 @@ public class LoginMain {
                             System.out.println(employee.displayInformation());
                         }
                     }
+                    break;
+                case 4:
+                    offManagement.create();
+                    break;
+                case 5:
+                    offManagement.approveOff();
+                    offManagement.display();
                     break;
             }
         } while (choice != 0);
